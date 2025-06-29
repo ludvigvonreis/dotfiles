@@ -1,0 +1,121 @@
+@define-color background-transparent rgba(0, 0, 0, 0.0);
+@define-color background-tooltip #171717;
+@define-color background-workspaces rgba(23, 23, 23, 0.0);
+@define-color background-half rgba(0, 0, 0, 0.0);
+
+@define-color border-tooltip #101a24;
+@define-color border-window rgb(255, 255, 255);
+
+@define-color font-default #000000;
+@define-color font-muted #888789;
+@define-color font-accent #A1BDCE;
+@define-color font-active #009dff;
+@define-color font-window rgba(255, 255, 255, 0.75);
+
+* {
+	font-family: "JetBrains Mono Nerd Font";
+	font-weight: bold;
+	font-size: 15px;
+}
+
+window#waybar {
+	background: @background-transparent;
+	border: 0px solid @border-window;
+	border-radius: 10px;
+}
+
+tooltip {
+	background: @background-tooltip;
+	color: @font-default;
+	font-size: 13px;
+	border-radius: 7px;
+	border: 2px solid @border-tooltip;
+}
+
+#workspaces {
+	background: @background-workspaces;
+	color: @font-muted;
+	box-shadow: none;
+	text-shadow: none;
+	border-radius: 9px;
+	transition: 0.2s ease;
+	padding-left: 4px;
+	padding-right: 4px;
+	padding-top: 1px;
+}
+
+#workspaces button {
+	background: @background-workspaces;
+	color: @font-accent;
+	box-shadow: none;
+	text-shadow: none;
+	border-radius: 9px;
+	transition: 100ms ease;
+	padding-left: 4px;
+	padding-right: 4px;
+	border: none;
+}
+
+#workspaces button.active {
+	color: @font-active;
+	transition: all 0.3s ease;
+	padding-left: 4px;
+	padding-right: 4px;
+}
+
+#workspaces button:hover {
+	background: none;
+	color: @font-active;
+	animation: ws_hover 20s ease-in-out 1;
+	transition: all 0.5s cubic-bezier(0.55, -0.68, 0.48, 1.682);
+}
+
+#clock {
+	color: @font-accent;
+	font-size: 15px;
+	font-weight: 900;
+	font-family: "JetBrains Mono Nerd Font";
+	opacity: 1;
+	margin: 3px 0px 0px 0px;
+	padding-left: 10px;
+	padding-right: 10px;
+	border: none;
+}
+
+#window {
+	color: @font-window;
+	font-weight: bold;
+}
+
+.modules-left {
+	background-color: @background-half;
+	border-radius: 0.5rem;
+}
+
+.modules-center {
+	background-color: @background-half;
+	border-radius: 0.5rem;
+
+	padding: 0px 20px 0px 20px;
+}
+
+.modules-right {
+	background-color: rgba(0,0,0,0.5);
+	padding-left: 15px;
+	padding-right: 10px;
+	border-radius: 0.5rem;
+}
+
+#bluetooth {
+	color: @font-accent;
+}
+
+#bluetooth.connected {
+	color: @font-active;
+}
+
+#network {
+	padding-left: 10px;
+	padding-right: 10px;
+	color: @font-active;
+}
