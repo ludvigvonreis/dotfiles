@@ -1,12 +1,13 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
 
+eval $(ssh-agent)
+
 # Path to your Oh My Zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 export TERM=xterm-256color
 alias snvim="sudoedit"
 
-git init --bare ~/.dotfiles
 alias dot='git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
 dot config --local status.showUntrackedFiles no
 
@@ -77,7 +78,7 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git fzf)
+plugins=(git fzf zsh-autosuggestions)
 
 source $ZSH/oh-my-zsh.sh
 source $ZSH/fzf.sh
@@ -117,3 +118,5 @@ case ":$PATH:" in
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 # pnpm end
+
+. "$HOME/.local/share/../bin/env"
