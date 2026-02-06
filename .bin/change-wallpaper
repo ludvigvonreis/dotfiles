@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+
+folder="/home/ludvig/wallpapers"
+
+# If argument is given, use it
+if [ -n "$1" ]; then
+    image="$1"
+else
+    # No argument, use fzf to select a file
+    image=$(ls "$folder" | fzf --prompt="Select an image: ")
+    
+    # If nothing selected, exit
+    if [ -z "$image" ]; then
+        echo "No image selected."
+        exit 1
+    fi
+fi
+
+# Run awww with full path
+awww img "$folder/$image" \
+  --transition-type center \
+  --transition-fps 144 \
+  --transition-step 5
+
