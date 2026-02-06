@@ -1,0 +1,5 @@
+#!/bin/sh
+
+gpu-screen-recorder -w screen -a "default_input|default_output|app-inverse:steam" -f 60 -r 30 -c mp4 -o $HOME/Videos
+notify-send -t 1500 -u low -- "GPU Screen Recorder" "Started recording replay"
+

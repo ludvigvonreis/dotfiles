@@ -1,0 +1,3 @@
+#!/bin/sh
+
+pkill -15 -f gpu-screen-recorder

@@ -1,15 +1,9 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
 
-eval $(ssh-agent)
-
 # Path to your Oh My Zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 export TERM=xterm-256color
-alias snvim="sudoedit"
-
-alias dot='git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
-dot config --local status.showUntrackedFiles no
 
 
 # Set name of the theme to load --- if set to "random", it will
@@ -95,6 +89,14 @@ if [[ -n $SSH_CONNECTION ]]; then
 else
 	export EDITOR='nvim'
 fi
+
+eval $(ssh-agent)
+alias snvim="sudoedit"
+alias dot='git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
+dot config --local status.showUntrackedFiles no
+export PATH=$HOME/.bin:$PATH
+compdef '_files -W $HOME/wallpapers' change-wallpaper
+
 
 # Compilation flags
 # export ARCHFLAGS="-arch $(uname -m)"
