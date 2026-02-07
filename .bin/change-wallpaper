@@ -16,9 +16,12 @@ else
     fi
 fi
 
+matugen image "$folder/$image"
+
 # Run awww with full path
 awww img "$folder/$image" \
-  --transition-type center \
+  --transition-type grow \
   --transition-fps 144 \
-  --transition-step 5
+  --transition-step 90 \
+  --transition-duration 0.5
 

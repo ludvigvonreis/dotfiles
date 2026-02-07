@@ -1,0 +1,97 @@
+# =========================
+# DUNST
+# =========================
+
+[global]
+	# ---------- Placement ----------
+	monitor = 1
+	follow = mouse
+	origin = top-right
+	offset = 16x16
+
+	# ---------- Size ----------
+	width = 280
+	height = 250
+	notification_limit = 20
+	gap_size = 6
+	corner_radius = 10
+	scale = 0
+
+	# ---------- Opacity ----------
+	transparency = 45
+	frame_width = 0
+
+	# ---------- Sorting ----------
+	sort = yes
+	stack_duplicates = true
+	hide_duplicate_count = true
+	indicate_hidden = yes
+
+	# ---------- Text ----------
+	font = SF Pro Display Medium 10
+	line_height = 3
+	markup = full
+	format = "<b><span size='110%%'>%s</span></b>\n<span line-height='1.8'>%b</span>"
+	alignment = left
+	vertical_alignment = center
+	ellipsize = middle
+	ignore_newline = no
+	show_age_threshold = 60
+	show_indicators = yes
+
+	# ---------- Icons -------------
+	icon_path = /usr/share/icons/Adwaita/16x16/status/:/usr/share/icons/Adwaita/16x16/devices/:/usr/share/icons/Adwaita/16x16/legacy/
+
+	# ---------- Progress ----------
+	progress_bar = true
+	progress_bar_height = 10
+	progress_bar_min_width = 120
+	progress_bar_max_width = 240
+	progress_bar_frame_width = 0
+	progress_bar_corner_radius = 6
+
+	# ---------- History ----------
+	sticky_history = yes
+	history_length = 20
+
+	# ---------- Commands ----------
+	dmenu = rofi -dmenu -p dunst:
+	browser = xdg-open
+
+	# ---------- Behavior ----------
+	always_run_script = true
+	ignore_dbusclose = false
+	force_xwayland = false
+
+	# ---------- Mouse ----------
+	mouse_left_click = context, close_current
+	mouse_middle_click = do_action, close_current
+	mouse_right_click = close_all
+	# ---------- Frame ----------
+	frame_width = 2
+	frame_color = "#42474e"
+
+[urgency_low]
+	background = "#212733cc"
+	foreground = "#d9d7ce"
+	timeout = 4
+
+[urgency_normal]
+	background = "#212733cc"
+	foreground = "#d9d7ce"
+	timeout = 5
+
+[urgency_critical]
+	background = "#212733e6"
+	foreground = "#ffffff"
+	timeout = 15
+
+[mpris-now-playing]
+    appname = "notify-send"
+    summary = "Now Playing:"
+    skip_display = true
+
+[mpris-stopped-playing]
+    appname = "notify-send"
+    summary = " Playback:"
+    skip_display = true

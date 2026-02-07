@@ -1,0 +1,14 @@
+gsr info: gsr_kms_client_init: setting up connection to /usr/bin/gsr-kms-server
+gsr info: gsr_kms_client_init: waiting for server to connect
+kms server info: connecting to the client
+gsr info: gsr_kms_client_init: server connected
+gsr info: replacing file-backed unix domain socket with socketpair
+kms server info: connected to the client
+gsr info: using socketpair
+gsr info: using h264 encoder because a codec was not specified
+[h264_nvenc @ 0x55a3678fc900] ignoring invalid SAR: 0/0
+update fps: 61, damage fps: 61
+update fps: 61, damage fps: 61
+update fps: 60, damage fps: 60
+update fps: 60, damage fps: 60
+update fps: 60, damage fps: 60
