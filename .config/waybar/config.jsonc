@@ -4,10 +4,10 @@
 	"layer": "bottom",
 	"position": "bottom",
 	"mod": "dock",
-	"margin-left": 10,
-	"margin-right": 10,
+	"margin-left": 0,
+	"margin-right": 0,
 	"margin-top": 0,
-	"margin-bottom": 5,
+	"margin-bottom": 0,
 	"exclusive": true,
 	"passthrough": false,
 	"gtk-layer-shell": true,
@@ -24,10 +24,19 @@
 		"format-disconnected": "⚠"
 	},
 	"hyprland/window": {
-		"format": "{class}",
+		"format": "{initialClass}",
 		"max-length": 120,
 		"icon": false,
-		"icon-size": 13
+		"icon-size": 13,
+		"rewrite": {
+			"firefox": "Firefox",
+			"org.mozilla.firefox": "Firefox",
+			"code": "Code",
+			"kitty": "Terminal",
+			"discord": "Discord",
+			"Spotify": "Spotify",
+			"^$": "Desktop"
+    	}
 	},
 	"hyprland/workspaces": {
 		"format": "{id}",
@@ -38,6 +47,6 @@
 	},
 	"clock": {
 		"justify": "center",
-		"format": "{:%H:%M\n%d/%m/%Y}",
+		"format": "{:%H:%M\n%d/%m/%Y}"
 	}
 }

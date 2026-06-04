@@ -28,10 +28,10 @@
 	indicate_hidden = yes
 
 	# ---------- Text ----------
-	font = SF Pro Display Medium 10
+	font = FiraCode Nerd Font Mono 10
 	line_height = 3
 	markup = full
-	format = "<b><span size='110%%'>%s</span></b>\n<span line-height='1.8'>%b</span>"
+	format = "<b>%s</b>\n%b"
 	alignment = left
 	vertical_alignment = center
 	ellipsize = middle
@@ -86,12 +86,12 @@
 	foreground = "#ffffff"
 	timeout = 15
 
-[mpris-now-playing]
-    appname = "notify-send"
-    summary = "Now Playing:"
-    skip_display = true
+#[mpris-now-playing]
+#    appname = "notify-send"
+#    summary = "Now Playing:"
+#    skip_display = true
 
-[mpris-stopped-playing]
-    appname = "notify-send"
-    summary = " Playback:"
-    skip_display = true
+#[mpris-stopped-playing]
+#    appname = "notify-send"
+#    summary = " Playback:"
+#    skip_display = true

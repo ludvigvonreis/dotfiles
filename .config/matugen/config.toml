@@ -1,19 +1,15 @@
 [config]
 reload_apps = true
 
-scheme = "vibrant"
-contrast = "high"
-
-[overrides.primary]
-saturation = 3
-
-[overrides.secondary]
-saturation = 2
-
-[overrides.tertiary]
-saturation = 1.4
-
 
 [templates.hyprland]
-input_path = "~/.config/matugen/templates/hyprland.conf"
-output_path = "~/.config/hypr/colors.conf"
+input_path = "~/.config/matugen/templates/hyprland.lua"
+output_path = "~/.config/hypr/colors.lua"
+
+[templates.waybar]
+input_path = "~/.config/matugen/templates/waybar.css"
+output_path = "~/.config/waybar/colors.css"
+
+[templates.rofi]
+input_path = "~/.config/matugen/templates/custom.rasi"
+output_path = "~/.config/rofi/custom.rasi"

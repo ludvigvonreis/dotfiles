@@ -1,0 +1,50 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+get_default_sink_id() {
+    wpctl status | awk '
+        /Sinks:/ { in_sinks=1 }
+        /Sources:/ { in_sinks=0 }
+        in_sinks && /\*/ { match($0, /[0-9]+/, arr); print arr[0]; exit }
+    '
+}
+
+ORIGINAL_ID=$(get_default_sink_id)
+
+if [[ -z "$ORIGINAL_ID" ]]; then
+    echo "Could not determine current default sink." >&2
+    exit 1
+fi
+
+echo "Current default sink ID: $ORIGINAL_ID"
+
+cleanup() {
+    echo ""
+    echo "Restoring default sink to ID $ORIGINAL_ID..."
+    wpctl set-default "$ORIGINAL_ID"
+    if [[ -n "${POLLER_PID:-}" ]]; then
+        kill "$POLLER_PID" 2>/dev/null || true
+    fi
+    echo "Done."
+}
+
+trap cleanup INT TERM EXIT
+
+# Poll for the Mkchromecast sink in the background and set it as default once found
+(
+    for i in $(seq 1 30); do
+        sleep 1
+        MKCHROMECAST_ID=$(wpctl status | grep -i "mkchromecast" | grep -v "<" | grep -oP '[0-9]+' | head -1)
+        echo "Poll $i: MKCHROMECAST_ID='$MKCHROMECAST_ID'"
+        if [[ -n "$MKCHROMECAST_ID" ]]; then
+            echo "Found Mkchromecast sink ($MKCHROMECAST_ID), setting as default..."
+            wpctl set-default "$MKCHROMECAST_ID"
+            exit 0
+        fi
+    done
+    echo "Mkchromecast sink did not appear after 30 seconds." >&2
+) &
+POLLER_PID=$!
+
+# mkchromecast runs in the foreground so it gets your input
+mkchromecast -s

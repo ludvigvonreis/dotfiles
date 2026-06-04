@@ -16,10 +16,12 @@ else
     fi
 fi
 
-matugen image "$folder/$image"
+img="$folder/$image"
 
+matugen image "$img" --type scheme-rainbow
+cp "$img" $HOME/.cache/background.png
 # Run awww with full path
-awww img "$folder/$image" \
+awww img "$img" \
   --transition-type grow \
   --transition-fps 144 \
   --transition-step 90 \

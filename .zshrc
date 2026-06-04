@@ -94,8 +94,15 @@ eval $(ssh-agent)
 alias snvim="sudoedit"
 alias dot='git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
 dot config --local status.showUntrackedFiles no
-export PATH=$HOME/.bin:$PATH
 compdef '_files -W $HOME/wallpapers' change-wallpaper
+
+function y() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+	command yazi "$@" --cwd-file="$tmp"
+	IFS= read -r -d '' cwd < "$tmp"
+	[ "$cwd" != "$PWD" ] && [ -d "$cwd" ] && builtin cd -- "$cwd"
+	rm -f -- "$tmp"
+}
 
 
 # Compilation flags
