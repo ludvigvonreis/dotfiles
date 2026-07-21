@@ -15,7 +15,7 @@
 	// positions generated based on config.ctl //
 	"modules-left": ["hyprland/workspaces"],
 	"modules-center": ["hyprland/window"],
-	"modules-right": ["network", "clock"],
+	"modules-right": ["tray", "network", "clock"],
 	"network": {
 		"format-wifi": "",
 		"format-ethernet": "󰈀",
@@ -23,6 +23,10 @@
 		"format-linked": "{ifname} (No IP) ",
 		"format-disconnected": "⚠"
 	},
+	"tray": {
+		"icon-size": 21,
+		"spacing": 10,
+  	},
 	"hyprland/window": {
 		"format": "{initialClass}",
 		"max-length": 120,

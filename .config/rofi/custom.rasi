@@ -20,7 +20,7 @@ configuration {
 /*****----- Color Tokens (from first theme) -----*****/
 * {
     primary:                    #c0c1ff;
-    primary-container:          #ffb5a1;
+    primary-container:          #96ccff;
     on-primary-container:       #e1e0ff;
 
     secondary-container:        #454559;
