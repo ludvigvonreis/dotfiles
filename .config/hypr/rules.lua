@@ -40,7 +40,7 @@ hl.window_rule({
         class = "^(steam)$",
     },
     stay_focused = true,
-    min_size     = {1, 1},
+    min_size     = "1 1",
 })
 
 hl.window_rule({

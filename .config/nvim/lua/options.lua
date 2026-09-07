@@ -67,5 +67,7 @@ vim.opt.scrolloff = 10
 vim.o.tabstop = 4
 vim.o.shiftwidth = 4
 
+vim.opt.path:append(vim.fn.getcwd() .. "/**")
+
 
 -- vim: ts=2 sts=2 sw=2 et

@@ -3,8 +3,6 @@
 
 # Path to your Oh My Zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
-export TERM=xterm-256color
-
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time Oh My Zsh is loaded, in which case,
@@ -72,10 +70,14 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git fzf zsh-autosuggestions)
+plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
-source $ZSH/fzf.sh
+
+alias dot='git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
+dot config --local status.showUntrackedFiles no
+
+
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
@@ -83,27 +85,12 @@ source $ZSH/fzf.sh
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
 
-#Preferred editor for local and remote sessions
-if [[ -n $SSH_CONNECTION ]]; then
-	export EDITOR='nvim'
-else
-	export EDITOR='nvim'
-fi
-
-eval $(ssh-agent)
-alias snvim="sudoedit"
-alias dot='git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
-dot config --local status.showUntrackedFiles no
-compdef '_files -W $HOME/wallpapers' change-wallpaper
-
-function y() {
-	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
-	command yazi "$@" --cwd-file="$tmp"
-	IFS= read -r -d '' cwd < "$tmp"
-	[ "$cwd" != "$PWD" ] && [ -d "$cwd" ] && builtin cd -- "$cwd"
-	rm -f -- "$tmp"
-}
-
+# Preferred editor for local and remote sessions
+# if [[ -n $SSH_CONNECTION ]]; then
+#   export EDITOR='vim'
+# else
+#   export EDITOR='nvim'
+# fi
 
 # Compilation flags
 # export ARCHFLAGS="-arch $(uname -m)"
@@ -119,13 +106,3 @@ function y() {
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-
-# pnpm
-export PNPM_HOME="/home/ludvig/.local/share/pnpm"
-case ":$PATH:" in
-  *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
-esac
-# pnpm end
-
-. "$HOME/.local/share/../bin/env"

@@ -25,13 +25,7 @@ require("lazy").setup({
 
 	require("kickstart/plugins/theme"),
 
-	require("kickstart/plugins/todo-comments"),
-
-	require("kickstart/plugins/mini"),
-
 	require("kickstart/plugins/treesitter"),
-
-	require("kickstart/plugins/nvim-tree"),
 
 	require("kickstart.plugins.autopairs"),
 
