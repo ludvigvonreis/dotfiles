@@ -1,17 +1,14 @@
 return {
 	{
-		"olimorris/onedarkpro.nvim",
+		"navarasu/onedark.nvim",
 		priority = 1000,
 		lazy = false,
 		config = function()
-			vim.cmd.colorscheme("onedark")
-			local bg = "#212733"
-			local bg2 = "#1d232d"
-			vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
-			vim.api.nvim_set_hl(0, "NormalNC", { bg = bg2 })
-			vim.api.nvim_set_hl(0, "LineNr", { bg = bg })
-			vim.api.nvim_set_hl(0, "CursorLineNr", { bg = bg })
-			vim.api.nvim_set_hl(0, "SignColumn", { bg = bg })
+			require("onedark").setup({
+				style = "darker",
+				transparent = "true",
+			})
+			require("onedark").load()
 		end,
 	},
 }
