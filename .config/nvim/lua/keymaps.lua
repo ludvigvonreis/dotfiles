@@ -20,11 +20,35 @@ end, {
 	desc = "[S]earch [N]eovim files",
 })
 
-local function run_in_terminal(cmd)
-	local cwd = vim.fn.expand("%:p:h")
-	vim.fn.jobstart({ "kitty", "--directory", cwd, "-e", "sh", "-c", cmd .. "; exec zsh" }, { detach = true })
-end
+vim.keymap.set("n", "<leader>fc", function()
+	local root = vim.fs.root(0, ".git")
+	if root then
+		vim.cmd("lcd " .. vim.fn.fnameescape(root))
+	end
+end, { desc = "Move path to root of project" })
 
-vim.api.nvim_create_user_command("Term", function(opts)
-	run_in_terminal(opts.args)
-end, { nargs = 1, desc = "Run a shell command in a new OS terminal" })
+vim.keymap.set("n", "<leader>R", function()
+	local file = vim.fn.expand("%") -- Get the current file name
+	local first_line = vim.fn.getline(1) -- Get the first line of the file
+	if string.match(first_line, "^#!/") then -- If first line contains shebang
+		local escaped_file = vim.fn.shellescape(file) -- Properly escape the file name for shell commands
+		vim.cmd("!chmod +x " .. escaped_file) -- Make the file executable
+		vim.cmd("vsplit") -- Split the window vertically
+		vim.cmd("terminal " .. escaped_file) -- Open terminal and execute the file
+		vim.cmd("startinsert") -- Enter insert mode, recommended by echasnovski on Reddit
+	else
+		vim.cmd("echo 'Not a script. Shebang line not found.'")
+	end
+end, { desc = "Execute current file in terminal (if it's a script)" })
+
+vim.api.nvim_create_user_command("Kitty", function(opts)
+	local dir = vim.fn.expand("%:p:h")
+	if dir == "" or vim.fn.isdirectory(dir) == 0 then
+		dir = vim.fn.getcwd()
+	end
+	local cmd = { "kitty", "--directory", dir }
+	if opts.args ~= "" then
+		vim.list_extend(cmd, vim.split(opts.args, " ", { trimempty = true }))
+	end
+	vim.fn.jobstart(cmd, { detach = true })
+end, { nargs = "*", desc = "Open kitty in the current file's directory" })
