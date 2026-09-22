@@ -47,7 +47,7 @@ return {
 				desc = "Goto Implementation",
 			},
 			{
-				"<leader>D",
+				"<leader>dt",
 				"<cmd>LspUI type_definition<CR>",
 				desc = "Type Definition",
 			},

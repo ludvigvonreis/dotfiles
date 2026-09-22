@@ -1,33 +1,36 @@
 -- Telescope bindings
 local builtin = require("telescope.builtin")
-vim.keymap.set("n", "<leader>sk", builtin.keymaps, {
-	desc = "[S]earch [K]eymaps",
+vim.keymap.set("n", "<leader>fk", builtin.keymaps, {
+	desc = "[F]ind [K]eymaps",
 })
-vim.keymap.set("n", "<leader>f", builtin.find_files, {
-	desc = "Search [F]iles",
+vim.keymap.set("n", "<leader>ff", builtin.find_files, {
+	desc = "[F]ind [F]iles",
 })
-vim.keymap.set("n", "<leader>g", builtin.current_buffer_fuzzy_find, {
-	desc = "Search by [G]rep",
+vim.keymap.set("n", "<leader>fg", builtin.live_grep, {
+	desc = "[F]ind Live [G]rep",
 })
 vim.keymap.set("n", "<leader><leader>", builtin.buffers, {
 	desc = "Find open buffers",
 })
-vim.keymap.set("n", "<leader>sn", function()
+vim.keymap.set("n", "<leader>fk", function()
 	builtin.find_files({
 		cwd = vim.fn.stdpath("config"),
 	})
 end, {
-	desc = "[S]earch [N]eovim files",
+	desc = "[F]ind Neovim config",
 })
 
-vim.keymap.set("n", "<leader>fc", function()
+vim.keymap.set("n", "<leader>cd", function()
 	local root = vim.fs.root(0, ".git")
 	if root then
 		vim.cmd("lcd " .. vim.fn.fnameescape(root))
+		vim.notify("Changed root to " .. root, vim.log.levels.INFO)
+	else
+		vim.notify("No .git root found", vim.log.levels.WARN)
 	end
 end, { desc = "Move path to root of project" })
 
-vim.keymap.set("n", "<leader>R", function()
+vim.keymap.set("n", "<leader>x", function()
 	local file = vim.fn.expand("%") -- Get the current file name
 	local first_line = vim.fn.getline(1) -- Get the first line of the file
 	if string.match(first_line, "^#!/") then -- If first line contains shebang
