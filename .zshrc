@@ -10,5 +10,3 @@ dot config --local status.showUntrackedFiles no
 compdef dot="git"
 
 . "$HOME/.local/share/../bin/env"
-=======
-source <(fzf --zsh)
