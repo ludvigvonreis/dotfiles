@@ -6,9 +6,18 @@ folder="/home/ludvig/wallpapers"
 if [ -n "$1" ]; then
     image="$1"
 else
-    # No argument, use fzf to select a file
-    image=$(ls "$folder" | fzf --prompt="Select an image: ")
-    
+    # Only try kitty image previews if we're actually inside kitty
+    if [ -n "$KITTY_WINDOW_ID" ] && command -v kitty >/dev/null 2>&1; then
+        image=$(ls "$folder" | fzf \
+            --prompt="Select an image: " \
+            --preview="kitty +kitten icat --clear --transfer-mode=memory --stdin=no --place=\${FZF_PREVIEW_COLUMNS}x\${FZF_PREVIEW_LINES}@0x0 \"$folder\"/{}" \
+            --preview-window="right:60%" \
+        )
+    else
+        # Fallback: no preview support
+        image=$(ls "$folder" | fzf --prompt="Select an image: ")
+    fi
+ 
     # If nothing selected, exit
     if [ -z "$image" ]; then
         echo "No image selected."

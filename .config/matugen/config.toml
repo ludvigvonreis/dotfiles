@@ -3,8 +3,8 @@ reload_apps = true
 
 
 [templates.hyprland]
-input_path = "~/.config/matugen/templates/hyprland.lua"
-output_path = "~/.config/hypr/colors.lua"
+input_path = "~/.config/matugen/templates/hyprland.conf"
+output_path = "~/.config/hypr/colors.conf"
 
 [templates.waybar]
 input_path = "~/.config/matugen/templates/waybar.css"

@@ -1,16 +1,55 @@
-return { -- lazy.nvim
+return {
 	{
 		"folke/noice.nvim",
 		event = "VeryLazy",
 		opts = {
-			-- add any options here
+			cmdline = {
+				enabled = true,
+				view = "cmdline_popup",
+			},
+
+			messages = {
+				enabled = false,
+			},
+
+			notify = {
+				enabled = true,
+			},
+
+			popupmenu = {
+				enabled = false,
+			},
+
+			lsp = {
+				progress = {
+					enabled = false,
+				},
+				hover = {
+					enabled = false,
+				},
+				signature = {
+					enabled = false,
+				},
+				message = {
+					enabled = false,
+				},
+			},
+
+			health = {
+				checker = false,
+			},
 		},
-		dependencies = { "MunifTanjim/nui.nvim", "rcarriga/nvim-notify" },
+
+		dependencies = {
+			"MunifTanjim/nui.nvim",
+			"rcarriga/nvim-notify",
+		},
 	},
+
 	{
 		"rcarriga/nvim-notify",
 		opts = {
-			background_colour = "#232833", -- match your Normal bg
+			background_colour = "#232833",
 		},
 	},
 }
